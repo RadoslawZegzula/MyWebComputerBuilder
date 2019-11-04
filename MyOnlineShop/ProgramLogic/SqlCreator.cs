@@ -23,9 +23,8 @@ namespace MyOnlineShop.ProgramLogic
 
         public static string CreateSelect(string partName, string sortOrder)
         {
-           // var exampleSort = "ASC";
-
             var sqlString = $"SELECT * FROM {partName} ORDER BY {sortOrder}";
+
             return sqlString;
         }
 
