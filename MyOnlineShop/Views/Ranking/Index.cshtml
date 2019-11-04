@@ -1,0 +1,32 @@
+﻿@model PagedList.IPagedList<MyOnlineShop.Models.Computer>
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="align-self-sm-center">100 most popular Computers</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Likes</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var computer in @Model)
+    {
+        <tr onclick="location.href = '@Url.Action( "Index","Ranking", new { id = computer.Id })'">
+            <th scope="row">@computer.Id</th>
+            <th scope="row">@computer.IdClient</th>
+            <th scope="row">@computer.Comments</th>
+            <th scope="row">@computer.Likes</th>
+        </tr>
+    }
+    </tbody>
+</table>

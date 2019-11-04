@@ -1,0 +1,136 @@
+﻿@model MyOnlineShop.Models.ComputerViewModel
+@using PagedList.Mvc
+@using PagedList
+
+
+@using System.Security.Policy
+@using System.Web.UI.WebControls
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+                YourComputerName
+
+            </button>
+
+            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ffd11a" class="list-group-item list-group-item-action fas fa-exclamation-triangle fa-3x fa-border"></i>
+            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ff1a1a" class="list-group-item list-group-item-action fas fa-exclamation-circle fa-3x fa-border"></i>
+            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="list-group-item list-group-item-action fas fas fa-check fa-3x fa-border"></i>
+
+
+            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="list-group-item list-group-item-action fas fas fa-check"></i>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = " list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("Motherboard:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Motherboard" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("Ram:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Ram" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("Computers:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Computer" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                </li>
+            </ul>
+
+            bla
+
+            @Html.ActionLink("Cpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Cpu" }, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("Motherboard:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Motherboard" }, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("Ram:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Ram" }, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("Computers:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Computer" }, new { @class = "list-group-item list-group-item-action" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h2>@Model.Token List</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">id#</th>
+                    <th scope="col">img</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var part in @Model.Parts)
+                {
+
+                    <tr>
+                        <th scope="row"><i data-toggle="tooltip" data-placement="left" title="H3" style="color: #ffd11a" class="list-group-item list-group-item-action fas fa-exclamation-triangle"></i></th>
+                        <td><img class="rounded" src=@part.ImageUrl alt="Part Image" width="256" height="256" /></td>
+                        <td>
+                            <p>@part.Name</p>
+                            <p>@part.Price$</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("More Details", "Details", new { id = part.Id, token = @Model.Token }, new { @class = "btn btn-info" })
+                        </td>
+                        <td>@Html.ActionLink("Add to computer", "Alter", new { id = part.Id, partName = "Computer" }, new { @class = "btn btn-info" })</td>
+                        <td>
+                            <h4>@part.Price$</h4>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Buy", "Buy", new { id = part.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @Html.PagedListPager(
+            Model.Parts,
+            page => Url.Action("Index", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}),
+            new PagedListRenderOptions
+            {
+                FunctionToTransformEachPageLink = (liTag, aTag) =>
+                {
+                    aTag.Attributes.Add("class", "page-link");
+                    liTag.InnerHtml = aTag.ToString();
+                    return liTag;
+                },
+                LiElementClasses = new[] {"page-item"},
+                UlElementClasses = new[] {"pagination pagination-lg"}
+            }
+            )
+
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
