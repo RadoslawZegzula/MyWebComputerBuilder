@@ -16,7 +16,7 @@ namespace MyOnlineShop.ProgramLogic
 
             var message = "ok";
 
-            var cpu = LoadData<Cpu>(CreateSelect("Cpu",12))[0];
+            var cpu = LoadData<Cpu>(CreateSelect("Cpu",1))[0];
             //var gpu = LoadData<Gpu>(CreateSelect("Gpu", 1))[0];
             var motherboard = LoadData<MotherBoardModel>(CreateSelect("MotherBoard", 1))[0];
 

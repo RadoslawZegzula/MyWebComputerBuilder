@@ -34,7 +34,7 @@ namespace MyOnlineShop.Controllers
             var pageNumber = (page ?? 1);
 
             var test = LoadData<PartsModel>(CreateSelect(computerPart));
-            var customerMessage = ValidateComputer();
+            var customerMessage = "lolo";//ValidateComputer();
        
 
            var computerViewModel = new ComputerViewModel
