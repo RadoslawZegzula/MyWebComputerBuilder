@@ -20,16 +20,6 @@ namespace MyOnlineShop.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            //ViewBag.Message = "Your application description page.";
-            //
-            //return View();
-            const string sql = "SELECT * FROM Cpu";
-
-            return Content(""+LoadData<Cpu>(sql)[1].Name);
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
