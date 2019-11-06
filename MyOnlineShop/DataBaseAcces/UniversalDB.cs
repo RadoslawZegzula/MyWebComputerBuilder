@@ -13,7 +13,7 @@ namespace MyOnlineShop.DataBaseAcces
     {
         public static string TakeConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["Azure"].ConnectionString;
         }
 
         public static List<T> LoadData<T>(string sql)

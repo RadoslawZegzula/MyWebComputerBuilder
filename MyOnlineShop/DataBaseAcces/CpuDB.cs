@@ -17,7 +17,7 @@ namespace MyOnlineShop.DataBaseAcces
 
         public string TakeConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["Azure"].ConnectionString;
         }
 
         public List<Cpu> SelectAllCpu()
