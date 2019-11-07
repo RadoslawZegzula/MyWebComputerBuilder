@@ -22,7 +22,7 @@ namespace MyOnlineShop.ProgramLogic
 
             if (cpu.Socket != motherboard.Socket)
             {
-                message = "chujowy socket";
+                message = " socket is bad";
             }
 
             return message;
