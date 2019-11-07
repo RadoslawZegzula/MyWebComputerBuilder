@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using MyOnlineShop.Models;
-//using MyOnlineShop.DataBaseAcces;
+
 using static MyOnlineShop.DataBaseAcces.UniversalDB;
 
 namespace MyOnlineShop.Controllers

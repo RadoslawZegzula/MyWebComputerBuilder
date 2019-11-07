@@ -28,9 +28,7 @@
             <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ffd11a" class="list-group-item list-group-item-action fas fa-exclamation-triangle fa-3x fa-border"></i>
             <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ff1a1a" class="list-group-item list-group-item-action fas fa-exclamation-circle fa-3x fa-border"></i>
             <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="list-group-item list-group-item-action fas fas fa-check fa-3x fa-border"></i>
-
-
-            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="list-group-item list-group-item-action fas fas fa-check"></i>
+         
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = "list-group-item-action" })
@@ -54,15 +52,9 @@
                 </li>
             </ul>
 
-            bla
-
-            @Html.ActionLink("Cpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Cpu" }, new { @class = "list-group-item list-group-item-action" })
-            @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = "list-group-item list-group-item-action" })
-            @Html.ActionLink("Motherboard:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Motherboard" }, new { @class = "list-group-item list-group-item-action" })
-            @Html.ActionLink("Ram:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Ram" }, new { @class = "list-group-item list-group-item-action" })
-            @Html.ActionLink("Computers:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Computer" }, new { @class = "list-group-item list-group-item-action" })
         </div>
     </div>
+
     <div class="col-md-4">
         <h2>@Model.Token List</h2>
 

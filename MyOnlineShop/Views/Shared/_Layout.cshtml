@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - My  App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
    
     <div class="container">
         <i style = "color: #b30000" class="fas fa-dragon fa-3x fa-border"></i>
-        <a class="navbar-brand" href="#">My Shop</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">My Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,11 +37,6 @@
                     <a class="nav-link" href="@Url.Action("Index", "Ranking")">Ranking</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-
-            </form>
             @Html.Partial("_LoginPartial")
         </div>
     </div>
