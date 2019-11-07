@@ -16,12 +16,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
     <div class="container">
-            <i style = "color: #b30000" class="fas fa-dragon fa-3x fa-border"></i>
-            <a class="navbar-brand" href="#">My Shop</a>
+        <i style = "color: #b30000" class="fas fa-dragon fa-3x fa-border"></i>
+        <a class="navbar-brand" href="#">My Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
 
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
@@ -46,13 +45,17 @@
             @Html.Partial("_LoginPartial")
         </div>
     </div>
+
 </nav>
+
+<hr/>
+<hr />
 
 <div class="container body-content">
     @RenderBody()
-    <hr/>
     <footer>
         <p>&copy; @DateTime.Now.Year - My  Application</p>
+
     </footer>
 </div>
 

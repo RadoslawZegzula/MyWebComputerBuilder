@@ -204,8 +204,6 @@
     <Compile Include="Models\Cpu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="DataBaseAcces\ComputerDb.cs" />
-    <Compile Include="DataBaseAcces\CpuDb.cs" />
     <Compile Include="Models\MotherBoardModel.cs" />
     <Compile Include="Models\PartsModel.cs" />
     <Compile Include="ProgramLogic\SqlCreator.cs" />

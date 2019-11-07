@@ -16,7 +16,7 @@ namespace MyOnlineShop.Models
         public int Frequency { get; set; }
         public int Cores { get; set; }
         public string Socket { get; set; }
-        public int Wattage { get; set; }
+        public float TDP { get; set; }
 
     }
 }
