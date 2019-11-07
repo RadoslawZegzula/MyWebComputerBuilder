@@ -15,12 +15,12 @@ namespace MyOnlineShop.Controllers
         // GET: Ranking
         public ActionResult Index(int? page)
         {
-            var computerDb=new ComputerDb();
-            var x = computerDb.SelectAllComputers();
-            var pageNumber = (page ?? 1);
 
-            return View(x.ToPagedList(pageNumber, 2));
-
+            //var x = computerDb.SelectAllComputers();
+            //var pageNumber = (page ?? 1);
+            //
+            //return View(x.ToPagedList(pageNumber, 2));
+            return Content("Not implemented");
         }
     }
 }
