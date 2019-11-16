@@ -17,38 +17,61 @@
 
 
 <div class="row">
-
+    
+  
     <div class="col-md-3">
+
+        <p>
+            <ul class="list-group">
+
+                <li class="list-group-item d-flex justify-content-between align-items-center active">
+                    Your Computer List:
+                    <a href="@Url.Action("AddComputer", "Computer")" class="btn btn-success">
+                        <i data-toggle="tooltip" data-placement="left" title="Add new Computer" aria-hpartIdden="true" class="fas fa-plus-square"></i>
+                    </a>
+                </li>
+                @foreach (var computer in @Model.UserComputers)
+                {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink(@computer.Name, "Index", new { ComputerId = @computer.Id }, new { @class = "list-group-item-action" })
+                    <a href="@Url.Action("DeleteComputer", "Computer",new {deleteId=@computer.Id})" class="btn">
+                        <i data-toggle="tooltip" data-placement="left" title="Delete" aria-hpartIdden="true" class="fas fa-trash-alt fa-border"></i>
+                    </a>
+                </li>
+                }
+
+            </ul>
+        </p>
+
         <div class="list-group">
             <button type="button" class="list-group-item list-group-item-action active">
-                YourComputerName
-
+                @Model.ComputerM.Name
             </button>
 
-            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ffd11a" class="list-group-item list-group-item-action fas fa-exclamation-triangle fa-3x fa-border"></i>
-            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #ff1a1a" class="list-group-item list-group-item-action fas fa-exclamation-circle fa-3x fa-border"></i>
-            <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="list-group-item list-group-item-action fas fas fa-check fa-3x fa-border"></i>
-         
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @Html.ActionLink("Cpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Cpu" }, new { @class = "list-group-item-action" })
-                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                    @Html.ActionLink("Cpu Name:"+(@Model.MyComputerParts[0] is null ? "" : @Model.MyComputerParts[0].Name) , "Index", new { computerId=@Model.ComputerM.Id, ComputerPart = "Cpu" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Cpu"].Item2"></i>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @Html.ActionLink("Gpu:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Gpu" }, new { @class = " list-group-item-action" })
-                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                    @Html.ActionLink("Gpu:" + @Model.ComputerM.CpuId.ToString(), "Index", new { computerId = @Model.ComputerM.Id, ComputerPart = "Gpu" }, new { @class = " list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Gpu"].Item2"></i>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @Html.ActionLink("Motherboard:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Motherboard" }, new { @class = "list-group-item-action" })
-                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                    @Html.ActionLink("Motherboard:" + @Model.ComputerM.UserId.ToString(), "Index", new { computerId = @Model.ComputerM.Id, ComputerPart = "Motherboard" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Ram"].Item2"></i>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @Html.ActionLink("Ram:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Ram" }, new { @class = "list-group-item-action" })
-                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                    @Html.ActionLink("Ram:" + @Model.ComputerM.UserId.ToString(), "Index", new { computerId = @Model.ComputerM.Id, ComputerPart = "Ram" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Ram"].Item2"></i>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @Html.ActionLink("Computers:" + @Model.ComputerM.IdClient.ToString(), "Index", new { ComputerPart = "Computer" }, new { @class = "list-group-item-action" })
-                    <i data-toggle="tooltip" data-placement="left" title="@Model.MessageToCustomer" aria-hidden="true" style="color: #00cc6a" class="fas fas fa-check fa-border"></i>
+                    @Html.ActionLink("Power Supply:" + @Model.ComputerM.UserId.ToString(), "Index", new { computerId = @Model.ComputerM.Id, ComputerPart = "PowerSupply" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Ram"].Item2"></i>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @Html.ActionLink("UserComputers:" + @Model.ComputerM.UserId.ToString(), "Index", new { computerId = @Model.ComputerM.Id, ComputerPart = "Computer" }, new { @class = "list-group-item-action" })
+                    <i data-toggle="tooltip" data-placement="left" title="@Model.TextAndIconToCustomer["Ram"].Item1" aria-hpartIdden="true" class="@Model.TextAndIconToCustomer["Ram"].Item2"></i>
                 </li>
             </ul>
 
@@ -61,14 +84,14 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">id#</th>
+                    <th scope="col">partId#</th>
                     <th scope="col">img</th>
                     <th scope="col">Details</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach (var part in @Model.Parts)
+                @foreach (var part in @Model.ShopParts)
                 {
 
                     <tr>
@@ -81,7 +104,7 @@
                         <td>
                             @Html.ActionLink("More Details", "Details", new { id = part.Id, token = @Model.Token }, new { @class = "btn btn-info" })
                         </td>
-                        <td>@Html.ActionLink("Add to computer", "Alter", new { id = part.Id, partName = "Computer" }, new { @class = "btn btn-info" })</td>
+                        <td>@Html.ActionLink("Add to computer", "Alter", new { partId = part.Id, computerId=@Model.ComputerM.Id, partName = @Model.Token}, new { @class = "btn btn-info" })</td>
                         <td>
                             <h4>@part.Price$</h4>
                         </td>
@@ -94,8 +117,8 @@
         </table>
 
         @Html.PagedListPager(
-            Model.Parts,
-            page => Url.Action("Index", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}),
+            Model.ShopParts,
+            page => Url.Action("Index", new { computerId = @Model.ComputerM.Id, ComputerPart = @Model.Token, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}),
             new PagedListRenderOptions
             {
                 FunctionToTransformEachPageLink = (liTag, aTag) =>

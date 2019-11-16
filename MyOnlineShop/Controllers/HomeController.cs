@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.AspNet.Identity;
 using MyOnlineShop.Models;
 
 using static MyOnlineShop.DataBaseAcces.UniversalDB;

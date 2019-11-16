@@ -59,7 +59,7 @@ namespace MyOnlineShop
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
+            //    UserId = "",
             //    ClientSecret = ""
             //});
         }

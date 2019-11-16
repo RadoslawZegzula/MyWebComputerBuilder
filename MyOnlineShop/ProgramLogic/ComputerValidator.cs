@@ -11,21 +11,46 @@ namespace MyOnlineShop.ProgramLogic
 {
     public static class ComputerValidator
     {
-        public static string ValidateComputer()
+        const string okeyIcon = "fas fa-check fa-border";
+        const string warringIcon = "fas fa-exclamation-triangle fa-border";
+        const string errorIcon = "fas fa-exclamation-circle fa - border";
+    
+        public static IDictionary<string, (string, string)> ValidateComputer()
         {
 
-            var message = "ok";
+            IDictionary<string, (string,string)> dict = new Dictionary<string, (string,string)>();
+            dict.Add("Cpu", ValidateCpu());
+            dict.Add("Gpu", ValidateCpu());
+            dict.Add("Motherboard", ValidateCpu());
+            dict.Add("Ram", ValidateCpu());
+     
+            return dict;
+        }
 
-            var cpu = LoadData<Cpu>(CreateSelect("Cpu",1))[0];
-            //var gpu = LoadData<Gpu>(CreateSelect("Gpu", 1))[0];
+        public static (string, string) ValidateCpu()
+        {
+
+            var message="def";
+            string icon;
+            
+            var cpu = LoadData<Cpu>(CreateSelect("Cpu", 1))[0];
             var motherboard = LoadData<MotherBoardModel>(CreateSelect("MotherBoard", 1))[0];
 
-            if (cpu.Socket != motherboard.Socket)
+            if (cpu.Socket.ToLower() != motherboard.CpuSocket.ToLower())
             {
-                message = " socket is bad";
+                message += "socket";
+                icon = errorIcon;             
+            }
+            else
+            {
+                icon = okeyIcon;
             }
 
-            return message;
+            return (message,icon);
+        }
+        public static string ValidateGpu()
+        {
+            return "l";
         }
 
     }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using MyOnlineShop.DataBaseAcces;
 using MyOnlineShop.ProgramLogic;
 
 using MyOnlineShop.Models;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
 
 using static MyOnlineShop.ProgramLogic.SqlCreator;
 using static MyOnlineShop.DataBaseAcces.UniversalDB;
@@ -17,29 +17,52 @@ using static MyOnlineShop.ProgramLogic.ComputerValidator;
 
 namespace MyOnlineShop.Controllers
 {
+    [Authorize]
     public class ComputerController : Controller
     {
 
-        public ActionResult Index(int? page, string computerPart = "Cpu")
+        public ActionResult Index(int? page, int? computerId, string computerPart = "Cpu")
         {
+            var userId = User.Identity.GetUserId();
+
             var computer = new Computer
             {
                 Id = 32131,
-                IdClient = 32131,
+                UserId = "32131",
                 Comments = 32131,
-                IdCpu = 32131,
+                CpuId = 32131,
                 Likes = 32131
+            };
+
+            var userComputers = LoadData<Computer>(SelectComputersByUserId(userId));
+           
+
+            if (userComputers.Count>0)
+            {
+                computer = computerId is null ? userComputers[0] : userComputers.Find(x => x.Id == computerId);
+            }
+
+            var cpu = computerId is null ||computer.CpuId == 0 ? null: LoadData<PartsModel>(CreateSelect("Cpu", computer.CpuId))[0];
+
+            var myComputerParts = new List<PartsModel>
+            {
+                cpu
             };
 
             var pageNumber = (page ?? 1);
 
             var test = LoadData<PartsModel>(CreateSelect(computerPart));
-            var customerMessage = "lolo";//ValidateComputer();
+            var messageToCustomer = ValidateComputer();
        
 
            var computerViewModel = new ComputerViewModel
            {
-               ComputerM = computer, Parts=test.ToPagedList(pageNumber, 2),Token = computerPart, MessageToCustomer = customerMessage
+               ComputerM = computer,
+               UserComputers = userComputers,
+               MyComputerParts = myComputerParts,
+               ShopParts = test.ToPagedList(pageNumber, 2),
+               Token = computerPart,
+               TextAndIconToCustomer = messageToCustomer,
            };
 
            return View(computerViewModel);          
@@ -67,11 +90,27 @@ namespace MyOnlineShop.Controllers
             return View(test);
         }
 
-        public ActionResult Alter(int id, string partName)
+        public ActionResult Alter(int partId, int computerId, string partName)
         {
-            string s = CreateUpdate(id, partName);
-            int x=UpdateData(s);
-            Console.WriteLine(s);
+            var userId = User.Identity.GetUserId();
+            UpdateData(CreateUpdate(partId, computerId, partName, userId));
+
+            return RedirectToAction("Index", "Computer",new{computerId});
+        }
+
+        public ActionResult AddComputer()
+        {
+            var userId = User.Identity.GetUserId();
+            UpdateData(InsertComputerByUserId(userId));
+
+            return RedirectToAction("Index", "Computer");
+        }
+
+        public ActionResult DeleteComputer(int deleteId)
+        {
+            var userId = User.Identity.GetUserId();
+            UpdateData(DeleteComputerById(deleteId, userId));
+
             return RedirectToAction("Index", "Computer");
         }
     }

@@ -859,6 +859,7 @@ readers do not read off random characters that represent icons */
   content: "\f200"; }
 
 .fa-check:before {
+  color: #00cc6a;
   content: "\f00c"; }
 
 .fa-check-circle:before {
@@ -1456,10 +1457,14 @@ readers do not read off random characters that represent icons */
   content: "\f12a"; }
 
 .fa-exclamation-circle:before {
-  content: "\f06a"; }
+    color: #ff1a1a;
+    content: "\f06a";
+}
 
 .fa-exclamation-triangle:before {
-  content: "\f071"; }
+    color: #ffd11a;
+    content: "\f071";
+}
 
 .fa-expand:before {
   content: "\f065"; }
@@ -2974,7 +2979,8 @@ readers do not read off random characters that represent icons */
   content: "\f055"; }
 
 .fa-plus-square:before {
-  content: "\f0fe"; }
+    content: "\f0fe";
+}
 
 .fa-podcast:before {
   content: "\f2ce"; }
@@ -3913,6 +3919,7 @@ readers do not read off random characters that represent icons */
   content: "\f1f8"; }
 
 .fa-trash-alt:before {
+  color: #ff1a1a;
   content: "\f2ed"; }
 
 .fa-trash-restore:before {

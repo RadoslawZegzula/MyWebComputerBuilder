@@ -15,7 +15,7 @@ namespace MyOnlineShop.Models
 
         public string Manufacturer { get; set; }
         public string ChipModel { get; set; }
-        public string Socket { get; set; }
+        public string CpuSocket { get; set; }
         public int SoundCardCanals { get; set; }
         public int NetworkCard { get; set; }
         public string RearPanelConnectors { get; set; }

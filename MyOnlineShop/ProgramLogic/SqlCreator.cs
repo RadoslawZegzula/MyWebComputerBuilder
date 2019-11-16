@@ -16,7 +16,7 @@ namespace MyOnlineShop.ProgramLogic
 
         public static string CreateSelect(string partName, int id)
         {
-            var sqlString = $"SELECT * FROM {partName} WHERE Id={id}";
+            var sqlString = $"SELECT * FROM {partName} WHERE Id = {id}";
 
             return sqlString;
         }
@@ -28,16 +28,31 @@ namespace MyOnlineShop.ProgramLogic
             return sqlString;
         }
 
-        public static string CreateInsert(string partName, string sortOrder)
+
+        public static string SelectComputersByUserId(string userId)
         {
-            var sqlString = $"INSERT INTO {partName} (column1, column2, column3) VALUES(value1, value2, value3)";
+            var sqlString = $"SELECT * FROM computer WHERE UserId = '{userId}'";
 
             return sqlString;
         }
 
-        public static string CreateUpdate(int id, string partName)
+        public static string InsertComputerByUserId(string userId)
         {
-            var sqlString = $"UPDATE Computer SET Comments=9999 WHERE Id=1";
+            var sqlString = $"INSERT INTO computer (Name, UserId) VALUES('Computer Name', '{userId}')";
+
+            return sqlString;
+        }
+
+        public static string DeleteComputerById(int deleteId, string userId)
+        {
+            var sqlString = $"DELETE FROM computer WHERE Id = {deleteId} AND UserId = '{userId}'";
+            return sqlString;
+        }
+
+        public static string CreateUpdate(int partId, int computerId, string partName, string userId)
+        {
+            var tableNameOfPart = partName+"Id";
+            var sqlString = $"UPDATE computer SET {tableNameOfPart} = {partId} WHERE Id = {computerId} AND UserId = '{userId}'";
 
             return sqlString;
         }

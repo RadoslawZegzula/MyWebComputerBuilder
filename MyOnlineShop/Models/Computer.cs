@@ -8,8 +8,9 @@ namespace MyOnlineShop.Models
     public class Computer
     {
         public int Id { get; set; }
-        public int IdClient { get; set; }
-        public int IdCpu { get; set; }
+        public string Name { get; set; }
+        public string UserId { get; set; }
+        public int CpuId { get; set; }
         public int Comments { get; set; }
         public int Likes { get; set; }
     }

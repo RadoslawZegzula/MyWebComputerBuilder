@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="align-self-sm-center">100 most popular Computers</h2>
+<h2 class="align-self-sm-center">100 most popular UserComputers</h2>
 
 <table class="table table-hover">
     <thead>
@@ -23,7 +23,7 @@
     {
         <tr onclick="location.href = '@Url.Action( "Index","Ranking", new { id = computer.Id })'">
             <th scope="row">@computer.Id</th>
-            <th scope="row">@computer.IdClient</th>
+            <th scope="row">@computer.UserId</th>
             <th scope="row">@computer.Comments</th>
             <th scope="row">@computer.Likes</th>
         </tr>
