@@ -42,12 +42,12 @@ namespace MyOnlineShop.Controllers
                 computer = computerId is null ? userComputers[0] : userComputers.Find(x => x.Id == computerId);
             }
 
-            var cpu = computerId is null ||computer.CpuId == 0 ? null: LoadData<PartsModel>(CreateSelect("Cpu", computer.CpuId))[0];
+            var cpu = computerId is null || computer.CpuId == 0 ? null : LoadData<PartsModel>(CreateSelect("Cpu", computer.CpuId))[0];
+            var gpu = computerId is null || computer.GpuId == 0 ? null : LoadData<PartsModel>(CreateSelect("Gpu", computer.GpuId))[0];
+            var motherboard = computerId is null || computer.MotherboardId == 0 ? null : LoadData<PartsModel>(CreateSelect("Motherboard", computer.MotherboardId))[0];
+            var ram = computerId is null || computer.RamId == 0 ? null : LoadData<PartsModel>(CreateSelect("Ram", computer.RamId))[0];
 
-            var myComputerParts = new List<PartsModel>
-            {
-                cpu
-            };
+            var myComputerParts = new Dictionary<string, PartsModel> {{"Cpu", cpu}, {"Gpu", gpu}, { "Motherboard", motherboard }, { "Ram", ram } };
 
             var pageNumber = (page ?? 1);
 
@@ -111,6 +111,12 @@ namespace MyOnlineShop.Controllers
             var userId = User.Identity.GetUserId();
             UpdateData(DeleteComputerById(deleteId, userId));
 
+            return RedirectToAction("Index", "Computer");
+        }
+
+        public ActionResult BuyPart(int partId)
+        {
+            var userId = User.Identity.GetUserId();
             return RedirectToAction("Index", "Computer");
         }
     }

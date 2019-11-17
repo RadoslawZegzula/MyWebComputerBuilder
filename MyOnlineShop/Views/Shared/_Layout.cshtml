@@ -8,6 +8,7 @@
     <title>@ViewBag.Title - My  App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fontawesome-all.css")
 
 
 </head>
@@ -40,11 +41,8 @@
             @Html.Partial("_LoginPartial")
         </div>
     </div>
-
 </nav>
 
-<hr/>
-<hr />
 
 <div class="container body-content">
     @RenderBody()

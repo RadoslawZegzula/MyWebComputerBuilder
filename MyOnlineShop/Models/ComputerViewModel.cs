@@ -10,7 +10,7 @@ namespace MyOnlineShop.Models
     {
          public Computer ComputerM { get; set; }
          public List<Computer> UserComputers { get; set; }
-         public List<PartsModel> MyComputerParts { get; internal set; }
+         public IDictionary <string, PartsModel> MyComputerParts { get; set; }
          public PagedList.IPagedList<MyOnlineShop.Models.PartsModel> ShopParts { get; set; }
          public string Token { get; set; }
          public IDictionary <string, (string, string)> TextAndIconToCustomer { get; set; }

@@ -16,10 +16,7 @@ namespace MyOnlineShop.Controllers
         public ActionResult Index(int? page)
         {
 
-            //var x = computerDb.SelectAllComputers();
-            //var pageNumber = (page ?? 1);
-            //
-            //return View(x.ToPagedList(pageNumber, 2));
+
             return Content("Not implemented");
         }
     }
