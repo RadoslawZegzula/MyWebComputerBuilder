@@ -1,9 +1,0 @@
-﻿<?xml version="1.0"?>
-<connectionStrings>
-
-  <add 
-    name="DefaultConnection" 
-    connectionString="Data Source=bazaradoslawa.database.windows.net;Initial Catalog=BazaRadoslawaName;User ID=bazaradoslawa;Password=Radek036;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" 
-    providerName="azure" />
-
-</connectionStrings>
