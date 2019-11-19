@@ -30,15 +30,15 @@ namespace MyOnlineShop.ProgramLogic
         public static (string, string) ValidateCpu()
         {
 
-            var message="def";
+            var message="default message: ";
             string icon;
             
             var cpu = LoadData<Cpu>(CreateSelect("Cpu", 1))[0];
             var motherboard = LoadData<MotherBoardModel>(CreateSelect("MotherBoard", 1))[0];
 
-            if (cpu.Socket.ToLower() != motherboard.CpuSocket.ToLower())
+            if (!string.Equals(cpu.Socket, motherboard.CpuSocket, StringComparison.CurrentCultureIgnoreCase))
             {
-                message += "socket";
+                message += $"socket is not valid, choose cpu with {cpu.Socket} socket or motherboard with {motherboard.CpuSocket} socket";
                 icon = errorIcon;             
             }
             else

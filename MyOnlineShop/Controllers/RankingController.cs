@@ -15,8 +15,6 @@ namespace MyOnlineShop.Controllers
         // GET: Ranking
         public ActionResult Index(int? page)
         {
-
-
             return Content("Not implemented");
         }
     }
