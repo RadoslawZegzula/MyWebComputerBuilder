@@ -1,0 +1,36 @@
+﻿@model MyOnlineShop.Models.Entities.PartsBaseEntity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+<div class="container d-flex h-100 flex-column align-items-center">
+
+    <h2>Details of @Model.Name </h2>
+
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName == "Id")
+        {
+            continue;
+        }
+
+        if (property.PropertyName == "ImageUrl")
+        {
+            <img class="rounded" src=@Model.ImageUrl alt="Part Image" width="600" height="600" />
+            continue;
+        }
+
+        <strong>@(property.DisplayName ?? property.PropertyName)</strong>
+        <strong>@Html.Display(property.PropertyName)</strong>
+    }
+    @Html.ActionLink("Back to List", "Index",new {}, new{@class="btn btn-info"})
+
+</div>
+
+
+
+
+

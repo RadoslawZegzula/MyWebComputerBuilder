@@ -1,0 +1,157 @@
+﻿@model MyOnlineShop.Models.ViewModels.ComputerViewModel
+@using PagedList.Mvc
+@using PagedList
+
+
+@using System.Security.Policy
+@using System.Web.UI.WebControls
+@using MyOnlineShop.Controllers
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row min-vh-100 flex-column flex-md-row">
+
+    <aside class="col-12 col-md-2 p-0  flex-shrink-1">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center active">
+                Add new Computer
+                <a href="@Url.Action("AddComputer", "Computer")" class="btn">
+                    <i data-toggle="popover" data-placement="right" title="Add" style="color: azure" data-content="Click to add new computer" aria-hidden="true" class="fas fa-plus-square"></i>
+                </a>
+            </li>
+            @if (@Model?.UserComputers != null)
+            {
+                foreach (var computer in @Model.UserComputers)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @Html.ActionLink(@computer.Name, "Index", new {ComputerId = @computer.Id}, new {@class = "list-group-item-action"})
+                        <a href="@Url.Action("DeleteComputer", "Computer", new {deleteId = @computer.Id})" class="btn">
+                            <i data-toggle="popover" data-placement="left" title="Delete" data-content="click to delete" aria-hidden="true" class="fas fa-trash-alt fa-border"></i>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </aside>
+
+    <aside class="col-12 col-md-2 p-0  flex-shrink-1">
+        <div class="list-group">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center active">
+                    @if (@Model?.ComputerM != null)
+                    {
+                        <b>@Model.ComputerM.Name</b>
+                        <a href="@Url.Action("EditComputer", "Computer", new {id = Model.ComputerM.Id})" class="btn">
+                            <i data-toggle="popover" data-placement="left" title="Edit" style="color: azure" data-content="Click this to edit" aria-hidden="true" class="fas fa-edit"></i>
+                        </a>
+                    }
+                </li>
+                @if (@Model?.MyComputerParts != null)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b> @Html.ActionLink("Cpu: " + (@Model?.MyComputerParts["Cpu"] is null ? "" : @Model.MyComputerParts["Cpu"].Name), "Index", new {computerId = @Model?.ComputerM?.Id, ComputerPart = "Cpu"}, new {@class = "list-group-item-action"})</b>
+                        <i data-toggle="popover" data-placement="left" title="Cpu" data-content="@Model.TextAndIconToCustomer.Cpu.message" aria-hidden="true" class="@Model.TextAndIconToCustomer.Cpu.icon"></i>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b> @Html.ActionLink("Gpu: " + (@Model?.MyComputerParts["Gpu"] is null ? "" : @Model.MyComputerParts["Gpu"].Name), "Index", new {computerId = @Model?.ComputerM?.Id, ComputerPart = "Gpu"}, new {@class = " list-group-item-action"})</b>
+                        <i data-toggle="popover" data-placement="left" title="Gpu" data-content="@Model.TextAndIconToCustomer.Gpu.message" aria-hidden="true" class="@Model.TextAndIconToCustomer.Gpu.icon"></i>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b> @Html.ActionLink("Motherboard: " + (@Model?.MyComputerParts["Motherboard"] is null ? "" : @Model.MyComputerParts["Motherboard"].Name), "Index", new {computerId = @Model?.ComputerM?.Id, ComputerPart = "Motherboard"}, new {@class = "list-group-item-action"})</b>
+                        <i data-toggle="popover" data-placement="left" title="Motherboard" data-content="@Model.TextAndIconToCustomer.Motherboard.message" aria-hidden="true" class="@Model.TextAndIconToCustomer.Motherboard.icon"></i>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b> @Html.ActionLink("Ram: " + (@Model?.MyComputerParts["Ram"] is null ? "" : @Model.MyComputerParts["Ram"].Name), "Index", new {computerId = @Model.ComputerM?.Id, ComputerPart = "Ram"}, new {@class = "list-group-item-action"})</b>
+                        <i data-toggle="popover" data-placement="left" title="Ram" data-content="@Model.TextAndIconToCustomer.Ram.message" aria-hidden="true" class="@Model.TextAndIconToCustomer.Ram.icon"></i>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b> @Html.ActionLink("Power Supply: " + (@Model?.MyComputerParts["PowerSupply"] is null ? "" : @Model?.MyComputerParts["PowerSupply"].Name), "Index", new {computerId = @Model?.ComputerM?.Id, ComputerPart = "PowerSupply"}, new {@class = "list-group-item-action"})</b>
+                        <i data-toggle="popover" data-placement="left" title="Power Supply" data-content="@Model?.TextAndIconToCustomer.PowerSupply.message" aria-hidden="true" class="@Model.TextAndIconToCustomer.PowerSupply.icon"></i>
+                    </li>
+                }
+            </ul>
+        </div>
+    </aside>
+
+    <main class="col py-3 flex-grow-1">
+        @if (@Model?.ShopPartsFilteredByPartName != null)
+        {
+            <h2>Explore our @Model.ShopPartsFilteredByPartName list!</h2>
+        }
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (@Model?.ShopPartsPagedList != null)
+            {
+                foreach (var part in @Model.ShopPartsPagedList)
+                {
+                    <tr>
+                        <th scope="row"><i data-toggle="popover" data-placement="left" title="H3" data-content="Vi" aria-hidden="true" class="list-group-item list-group-item-action fas fa-exclamation-triangle"></i></th>
+                        <td><img class="rounded" src=@part.ImageUrl alt="Part Image" width="256" height="256"/></td>
+                        <td>
+                            <p>@part.Name</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("More Details", "Details", new {id = part.Id, token = @Model.ShopPartsFilteredByPartName}, new {@class = "btn btn-info"})
+                        </td>
+                        @if(@Model?.ComputerM != null)
+                        {
+                            <td>@Html.ActionLink("Add to computer", "Alter", new {partId = part.Id, computerId = @Model.ComputerM.Id, partName = @Model.ShopPartsFilteredByPartName}, new {@class = "btn btn-info"})</td>
+                        }
+                        <td>
+                            <h4>@part.Price$</h4>
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+        @if (@Model?.ShopPartsPagedList != null)
+        {
+            @Html.PagedListPager(
+                Model.ShopPartsPagedList,
+                page => Url.Action("Index", new {computerId = @Model.ComputerM.Id, ComputerPart = @Model.ShopPartsFilteredByPartName, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}),
+                new PagedListRenderOptions
+                {
+                    FunctionToTransformEachPageLink = (liTag, aTag) =>
+                    {
+                        aTag.Attributes.Add("class", "page-link");
+                        liTag.InnerHtml = aTag.ToString();
+                        return liTag;
+                    },
+                    LiElementClasses = new[] {"page-item"},
+                    UlElementClasses = new[] {"pagination pagination-lg"}
+                }
+                )
+        }
+
+    </main>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({ trigger: "hover" })
+    })
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
